@@ -71,11 +71,11 @@ def landmark_detection(image):
         x, y, w, h = rect_to_bb(rect)
         cv2.rectangle(rect_faces, (x, y), (x + w, y + h), (255, 0, 0), 2)
     if len(dets) == 0:
-        print "No face detected in input image"
+        print("No face detected in input image")
         exit()
 
     if len(dets) > 1:
-        print "More than one face detected in input image"
+        print("More than one face detected in input image")
         exit()
 
     feature_points = predictor(gray_img, rect)

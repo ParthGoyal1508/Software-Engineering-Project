@@ -5,9 +5,9 @@ import FeatureDetection
 import wsFilter
 import morphing
 
-def call():
+def run(a,b):
     image_height = 500
-    sourceImagePath = "./SampleImages/source.jpg"
+    sourceImagePath = a
     sourceImage = cv2.imread(sourceImagePath)
     r = image_height * 1.0 / sourceImage.shape[0]
     dim = (int(sourceImage.shape[1] * r), image_height)
@@ -18,8 +18,8 @@ def call():
     Kdash = (K1 - np.min(K1))/(np.max(K1)-np.min(K1))
     # cv2.imshow("Face Mask",Kdash)
 
-    makeUpImagePath = "./SampleImages/makeU.jpg"
-    #makeUpImagePath = b
+    # makeUpImagePath = "./SampleImages/makeU.jpg"
+    makeUpImagePath = b
     makeUpImage = cv2.imread(makeUpImagePath)
     r = image_height * 1.0 / makeUpImage.shape[0]
     dim = (int(makeUpImage.shape[1] * r), image_height)
@@ -65,4 +65,3 @@ def call():
     resultant_image = cv2.cvtColor(resultant_image,cv2.COLOR_LAB2BGR)
     cv2.imwrite('out.jpg',resultant_image)
     
-call()

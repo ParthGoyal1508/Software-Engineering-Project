@@ -1,5 +1,6 @@
 import React from 'react';
 import './ImageUpload.css'
+import axios from 'axios';
 
 export default class ImageUpload extends React.Component {
     constructor(props) {
@@ -9,8 +10,30 @@ export default class ImageUpload extends React.Component {
   
     _handleSubmit(e) {
       e.preventDefault();
-      // TODO: do something with -> this.state.file
-      console.log('handle uploading-', this.state.file);
+      var formdata = new FormData()
+      formdata.append("file",this.state.file)
+
+      if(this.props.type==="source"){
+      axios.post("http://localhost:8000/source",formdata,{headers:{'Content-Type': 'multipart/form-data'}}).then(
+        (response)=>{
+          console.log("source")
+          console.log(response)
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )}
+      else{
+        axios.post("http://localhost:8000/makeup",formdata,{headers:{'Content-Type': 'multipart/form-data'}}).then(
+          (response)=>{
+          console.log("makeup")
+          console.log(response)
+          },
+          (error)=>{
+            console.log(error)
+          }
+        ) 
+      }
     }
   
     _handleImageChange(e) {
