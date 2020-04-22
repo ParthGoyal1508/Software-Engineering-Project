@@ -44,7 +44,7 @@ def result():
 
 @app.route('/image')
 def image():
-    resp = make_response(open('./out.jpg').read())
+    resp = make_response(open('out.jpg','rb').read())
     resp.content_type = "image/jpeg"
     return resp
 

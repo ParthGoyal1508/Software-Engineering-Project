@@ -5,7 +5,7 @@ import { Toolbar, Typography, Container, Paper, Grid, Button } from '@material-u
 import ImageUpload from './ImageUpload'
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
-const images = require.context('../public/images', true);
+// const images = require.context('../public/images', true);
 
 function hexToBase64(str) {
   return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
@@ -64,7 +64,7 @@ class App extends React.Component {
           <Grid item sm={12} xs={12}>
             <Paper elevation={1}>Result</Paper>
             {this.state.loading && <CircularProgress/>}
-            {this.state.image && <img src={this.state.pic} />}
+            <img src='http://localhost:8000/image' />
           </Grid>
 
 
