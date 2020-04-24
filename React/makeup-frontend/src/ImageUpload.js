@@ -48,8 +48,9 @@ export default class ImageUpload extends React.Component {
           imagePreviewUrl: reader.result
         });
       }
-  
-      reader.readAsDataURL(file)
+      
+      if(file)
+        reader.readAsDataURL(file)
     }
   
     render() {
@@ -68,8 +69,7 @@ export default class ImageUpload extends React.Component {
               type="file" 
               onChange={(e)=>this._handleImageChange(e)} />
             <button className="submitButton" 
-              type="submit" 
-              onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+              type="submit">Upload Image</button>
           </form>
         </div>
       )

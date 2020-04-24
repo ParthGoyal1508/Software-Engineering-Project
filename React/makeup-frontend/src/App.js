@@ -14,16 +14,17 @@ class App extends React.Component {
   state={
     loading: false,
     image: false,
-    key: ''
+    key: '',
+    pic:''
   }
 
   handleSubmit= async ()=>{
-    this.setState({loading:true})
+    this.setState({loading:true,image:false})
     var self = this
     await axios.get("http://localhost:8000/result").then(
       (response)=>{
         console.log(response)
-        self.setState({image:true,loading:false,key:self.state.key+'1'})
+        self.setState({image:true,loading:false,key:self.state.key+'1',pic:response.data})
       },
       (error)=>{
         alert('Upload Images first')
@@ -33,6 +34,7 @@ class App extends React.Component {
   }
 
   render(){
+    console.log(this.state)
   return (
     <div style={{height: '100vh'}}>
       <MuiAppBar position="static" style={{alignItems:'center'}}>
@@ -64,7 +66,7 @@ class App extends React.Component {
           <Grid item sm={6} xs={6}>
             <Paper elevation={0}>
             {this.state.loading && <CircularProgress/>}
-            {this.state.image && <img key={this.state.key} src={'http://localhost:8000/image'} />}
+            {this.state.image && <img key={this.state.key} src={this.state.pic} />}
             </Paper>
           </Grid>
 
