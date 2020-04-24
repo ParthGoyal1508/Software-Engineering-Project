@@ -9,6 +9,18 @@
     
 ![alt text](SampleImages/read.png)
 
+## Installation
+* `pip install -r requirements.txt` in the root directory
+* `cd React/makeup-frontend/`
+* `npm install`
+
+## Running the project
+#### Backend
+- `python app.py`
+#### Frontend
+- `cd React/makeup-frontend/`
+- `npm start`
+
 
 ## Contributing
      
@@ -23,5 +35,4 @@ See also the list of [contributors](https://github.com/ParthGoyal1508/Software-E
 
 
 ## Refrences
-[DigitalFace Makeup by Example](https://www.comp.nus.edu.sg/~tsim/documents/face_makeup_cvpr09_lowres.pdf) by Dong Guo and Terence Sim 
-
+[DigitalFace Makeup by Example](https://www.comp.nus.edu.sg/~tsim/documents/face_makeup_cvpr09_lowres.pdf) by Dong Guo and Terence Sim
