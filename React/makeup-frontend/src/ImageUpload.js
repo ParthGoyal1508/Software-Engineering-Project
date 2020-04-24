@@ -17,7 +17,7 @@ export default class ImageUpload extends React.Component {
       axios.post("http://localhost:8000/source",formdata,{headers:{'Content-Type': 'multipart/form-data'}}).then(
         (response)=>{
           console.log("source")
-          console.log(response)
+          alert(response.data)
         },
         (error)=>{
           console.log(error)
@@ -27,7 +27,7 @@ export default class ImageUpload extends React.Component {
         axios.post("http://localhost:8000/makeup",formdata,{headers:{'Content-Type': 'multipart/form-data'}}).then(
           (response)=>{
           console.log("makeup")
-          console.log(response)
+          alert(response.data)
           },
           (error)=>{
             console.log(error)
@@ -71,9 +71,6 @@ export default class ImageUpload extends React.Component {
               type="submit" 
               onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
           </form>
-          <div className="imgPreview">
-            {$imagePreview}
-          </div>
         </div>
       )
     }

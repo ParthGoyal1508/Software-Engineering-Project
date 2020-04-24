@@ -5,29 +5,28 @@ import { Toolbar, Typography, Container, Paper, Grid, Button } from '@material-u
 import ImageUpload from './ImageUpload'
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { grey } from '@material-ui/core/colors';
 // const images = require.context('../public/images', true);
 
-function hexToBase64(str) {
-  return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
-}
 
 class App extends React.Component {
   
   state={
     loading: false,
     image: false,
-    pic: null,
+    key: ''
   }
 
   handleSubmit= async ()=>{
     this.setState({loading:true})
+    var self = this
     await axios.get("http://localhost:8000/result").then(
       (response)=>{
         console.log(response)
-        this.setState({pic:response.data})
+        self.setState({image:true,loading:false,key:self.state.key+'1'})
       },
       (error)=>{
-        console.log(error)
+        alert('Upload Images first')
       }
     )
     this.setState({loading:false,image:true})
@@ -35,7 +34,7 @@ class App extends React.Component {
 
   render(){
   return (
-    <div>
+    <div style={{height: '100vh'}}>
       <MuiAppBar position="static" style={{alignItems:'center'}}>
         <Toolbar>
           <Typography style={{fontSize:20}}>
@@ -44,15 +43,16 @@ class App extends React.Component {
         </Toolbar>
       </MuiAppBar>
       <Container maxWidth="lg">
-        <Grid container spacing={3} style={{marginTop:50}}>
+          <Paper elevation={3} style={{padding:10,marginTop:50}}>
+        <Grid container justify="center" style={{flexGrow: 1}} spacing={3}>
           <Grid item sm={6} xs={12}>
-            <Paper elevation={1}>Original Image
+            <Paper elevation={0}>Original Image
             <ImageUpload key="1" type="source"/>
             </Paper>
           </Grid>
 
           <Grid item sm={6} xs={12}>
-            <Paper elevation={1}>Makeup Image
+            <Paper elevation={0}>Makeup Image
             <ImageUpload key="2" type="makeup"/>
             </Paper>
           </Grid>
@@ -61,14 +61,16 @@ class App extends React.Component {
             <Button onClick={this.handleSubmit} st>Show</Button>
           </Grid>
 
-          <Grid item sm={12} xs={12}>
-            <Paper elevation={1}>Result</Paper>
+          <Grid item sm={6} xs={6}>
+            <Paper elevation={0}>
             {this.state.loading && <CircularProgress/>}
-            <img src='http://localhost:8000/image' />
+            {this.state.image && <img key={this.state.key} src={'http://localhost:8000/image'} />}
+            </Paper>
           </Grid>
 
 
         </Grid>
+        </Paper>
       </Container>
       </div>
   );}
