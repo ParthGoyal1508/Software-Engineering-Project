@@ -70,6 +70,9 @@ export default class ImageUpload extends React.Component {
               onChange={(e)=>this._handleImageChange(e)} />
             <button className="submitButton" 
               type="submit">Upload Image</button>
+              <div className="imgPreview">
+                {$imagePreview}
+              </div>
           </form>
         </div>
       )
